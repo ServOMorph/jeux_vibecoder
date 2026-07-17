@@ -1,3 +1,11 @@
+## v0.2 — 2026-07-17
+
+### Ajouté
+- Repo du jeu `vaisseau/` : `run.py`, `moteur/boucle.py`, `moteur/rechargeur.py`, `modules/oxygene.py`, `JOURNAL_DE_BORD.md`.
+
+### Modifié
+- ROADMAP.md : Phase 0 marquée terminée, Jalon J0 tranché (hot-reload continu retenu).
+
 ## v0.1 — 2026-07-17
 
 ### Ajouté

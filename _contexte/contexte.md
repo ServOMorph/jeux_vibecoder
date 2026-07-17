@@ -7,7 +7,7 @@ Vaisseau-Écosystème : jeu Python où le joueur pilote son propre agent de coda
 Projet Python local, point d'entrée unique `run.py`. Architecture pensée pour le hot-reload (modification de code par l'agent → effet observable en relançant/rechargeant). Dashboard console texte (pygame minimal en option ultérieure). Aucun LLM intégré : jeu 100 % déterministe et scripté, agnostique à l'agent utilisé. Critères de victoire/progression lisibles dans le code.
 
 ## État actuel (réécrit intégralement à chaque /close)
-Brainstorming et cadrage terminés (docs/PROJET.md, docs/PLAN_DEVELOPPEMENT.md, ROADMAP.md rédigés). Concept validé : Vaisseau-Écosystème, hybride Usine à Robots + Tour de Garde. MVP scopé (1 module + 1 vague, niveaux 1-4). Aucun code du jeu écrit — prochaine étape : Phase 0 (spike hot-reload).
+Phase 0 terminée : repo du jeu créé dans `vaisseau/` (run.py, moteur/boucle.py, moteur/rechargeur.py, modules/oxygene.py). Spike hot-reload concluant : modification de code répercutée en direct, code cassé capturé sans crash. Jalon J0 tranché — hot-reload continu retenu, pas de repli. Prochaine étape : Phase 1 (moteur de jeu minimal).
 
 ## Décisions structurantes (append only — 10 entrées max, archiver au-delà)
 - 2026-07-17 : Initialisation du protocole vibecoding.
@@ -15,3 +15,4 @@ Brainstorming et cadrage terminés (docs/PROJET.md, docs/PLAN_DEVELOPPEMENT.md, 
 - 2026-07-17 : Rôle de l'IA tranché — agent de codage réel du joueur (pas de LLM intégré au jeu), agnostique à l'outil.
 - 2026-07-17 : MVP scopé — 1 module + 1 vague, niveaux pédagogiques 1 à 4. Extension "Mission & Audit" repoussée en post-MVP.
 - 2026-07-17 : Plan de développement validé — 4 phases (spike hot-reload, moteur, contenu pédagogique, playtest) suivies dans ROADMAP.md.
+- 2026-07-17 : Jalon J0 tranché — hot-reload continu validé par spike, pas de repli sur "reprise d'état".

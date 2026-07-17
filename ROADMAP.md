@@ -3,21 +3,21 @@
 > Suivi d'avancement du projet. Référence : [docs/PROJET.md](docs/PROJET.md) (concept) et [docs/PLAN_DEVELOPPEMENT.md](docs/PLAN_DEVELOPPEMENT.md) (détail des phases).
 > Convention : `[ ]` à faire · `[x]` fait · `[~]` en cours. Mettre à jour ce fichier à chaque session de travail.
 
-**État global : 🔴 Phase 0 non démarrée** *(mis à jour le 2026-07-17)*
+**État global : 🟢 Phase 0 terminée — Phase 1 à démarrer** *(mis à jour le 2026-07-17)*
 
 ---
 
 ## Phase 0 — Spike hot-reload (risque #1)
 
-- [ ] Structure du repo du jeu (`run.py`, `moteur/`, `modules/`, `JOURNAL_DE_BORD.md`)
-- [ ] Boucle de jeu minimale (tick 1 s, affichage console rafraîchi)
-- [ ] Rechargeur : détection des modifications de `modules/` + `importlib.reload` + capture de toute exception sans crash
-- [ ] Module d'exemple `modules/oxygene.py` avec contrat simple
-- [ ] Test réel avec Claude Code : prompter une modification, constater l'effet en direct
-- [ ] Cas d'erreur vérifié : code cassé par l'agent → erreur affichée au dashboard, le jeu continue
+- [x] Structure du repo du jeu (`run.py`, `moteur/`, `modules/`, `JOURNAL_DE_BORD.md`)
+- [x] Boucle de jeu minimale (tick 1 s, affichage console rafraîchi)
+- [x] Rechargeur : détection des modifications de `modules/` + `importlib.reload` + capture de toute exception sans crash
+- [x] Module d'exemple `modules/oxygene.py` avec contrat simple
+- [x] Test réel avec Claude Code : prompter une modification, constater l'effet en direct
+- [x] Cas d'erreur vérifié : code cassé par l'agent → erreur affichée au dashboard, le jeu continue
 
-**🏁 Jalon J0** — [ ] Décision go/no-go : hot-reload continu **ou** repli "reprise d'état au relancement"
-> Décision prise : *(à remplir)*
+**🏁 Jalon J0** — [x] Décision go/no-go : hot-reload continu **ou** repli "reprise d'état au relancement"
+> Décision prise : hot-reload continu retenu. Test manuel concluant — modification de `modules/oxygene.py` (changement de valeur puis erreur de syntaxe volontaire) répercutée en direct sans redémarrage de `run.py`, aucun crash de la boucle, ancienne valeur conservée pendant l'erreur.
 
 ---
 
@@ -74,7 +74,7 @@
 
 | Jalon | Date | Décision / remarque |
 |---|---|---|
-| J0 | — | |
+| J0 | 2026-07-17 | Hot-reload continu validé, pas de repli nécessaire |
 | J1 | — | |
 | J2 | — | |
 | J3 | — | |

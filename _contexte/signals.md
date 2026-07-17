@@ -1,7 +1,7 @@
 # Signals — jeux_vibecoder   (MAJ 2026-07-17)
 
 ## Actions ouvertes
-- [P1|ouvert] Démarrer la Phase 0 du plan de dev : spike hot-reload (structure repo jeu, `run.py`, `moteur/`, `modules/`) — fait quand: la démo "prompt → effet visible sans relancer" fonctionne, y compris cas de code cassé — réf: docs/PLAN_DEVELOPPEMENT.md (Phase 0), ROADMAP.md (Jalon J0)
+- [P1|ouvert] Démarrer la Phase 1 du plan de dev : moteur de jeu minimal (état du vaisseau, dashboard, vagues, dette, sauvegarde, score) — fait quand: une partie complète est jouable à la main (réparer un module, subir une vague, voir la dette craquer) — réf: docs/PLAN_DEVELOPPEMENT.md (Phase 1), ROADMAP.md (Jalon J1)
 
 ## Questions ouvertes
 
@@ -10,32 +10,31 @@
 ## Blocages
 
 ## Contexte chaud
-- Décision go/no-go hot-reload continu vs repli "reprise d'état" à trancher à l'issue du spike Phase 0 (critère déjà défini dans PLAN_DEVELOPPEMENT.md)
+- Jalon J0 franchi : hot-reload continu validé (repo `vaisseau/` créé et fonctionnel : run.py, moteur/boucle.py, moteur/rechargeur.py, modules/oxygene.py). Aucun repli "reprise d'état" nécessaire. Jalon J1 conditionne le ressenti de fun de la boucle de jeu (risque #2).
 
 ## Dernière session (2026-07-17)
 <!-- Écrasé intégralement par /close. Synthèse < 25 lignes. -->
 # Session du 2026-07-17
 
 ## Décisions prises
-- Concept retenu : Vaisseau-Écosystème (hybride Usine à Robots + Tour de Garde), univers vaisseau-écosystème vivant à la dérive
-- MVP défini : 1 module + 1 vague, niveaux pédagogiques 1 à 4
-- Rôle de l'IA tranché : agent de codage réel du joueur, jeu 100 % déterministe, agnostique à l'agent
-- Plan de dev en 4 phases (spike hot-reload → moteur → contenu pédagogique → playtest) + post-MVP en réserve
+- Jalon J0 tranché : hot-reload continu retenu (spike concluant, pas de repli sur "reprise d'état")
 
 ## Livrables produits ou modifiés
-- docs/brainstorm/session-2026-07-17.md : créé
-- docs/PROJET.md : créé
-- docs/PLAN_DEVELOPPEMENT.md : créé
-- ROADMAP.md : créé
-- README.md : créé
-- CHANGELOG.md : créé (v0.1)
+- vaisseau/run.py : créé
+- vaisseau/moteur/boucle.py : créé
+- vaisseau/moteur/rechargeur.py : créé
+- vaisseau/modules/oxygene.py : créé
+- vaisseau/JOURNAL_DE_BORD.md : créé
+- vaisseau/.gitignore : créé
+- ROADMAP.md : Phase 0 cochée, Jalon J0 renseigné
+- _contexte/signals.md : mis à jour
 
 ## Hypothèses validées / invalidées
-- EN ATTENTE : faisabilité du hot-reload continu (rien codé, à prototyper en Phase 0)
+- VALIDE : faisabilité du hot-reload continu (modification de valeur répercutée en direct, erreur de syntaxe volontaire capturée sans crash de la boucle)
 - EN ATTENTE : fun sans input direct dans le jeu (à vérifier en playtest, Phase 3)
 
 ## Prochaine étape exacte
-Créer la structure du repo du jeu (`run.py`, `moteur/`, `modules/`) et réaliser le spike hot-reload (Phase 0 du plan de dev).
+Démarrer la Phase 1 : modèle d'état du vaisseau, dashboard console complet, système de vagues, mécanique de dette, sauvegarde, score de clarté.
 
 ## Question bloquante pour la session suivante
 Aucune
