@@ -2,11 +2,11 @@ import time
 
 from moteur import etat as etat_mod
 from moteur import rechargeur
+from moteur import vagues
 
 MODULES = ["oxygene", "energie", "defense"]
 RESSOURCE_PAR_MODULE = {"oxygene": "oxygene", "energie": "energie", "defense": "integrite"}
 INTERVALLE_SEC = 1.0
-INTERVALLE_VAGUE_TICKS = 20
 LARGEUR_JAUGE = 20
 
 
@@ -20,18 +20,29 @@ def lancer():
     while True:
         tick += 1
         etat_lecture = {"tick": tick, **vaisseau}
+        vague = vagues.active(tick)
+        charge = vague["charge"] if vague is not None else 1
+        if vague is not None:
+            etat_lecture = vagues.etat_sous_charge(etat_lecture, vague)
 
         statuts = {}
         for nom in MODULES:
             module, erreur_reload = rechargeur.verifier_et_recharger(nom)
-            production = None
+            production = 0
             erreur_appel = None
             if module is not None:
-                try:
-                    production = module.produire(etat_lecture)
-                except Exception as exc:
-                    erreur_appel = exc
-            if production is not None:
+                for _ in range(charge):
+                    try:
+                        resultat = module.produire(etat_lecture)
+                        if not isinstance(resultat, int):
+                            raise TypeError("produire(etat) doit retourner un entier")
+                        production += resultat
+                    except Exception as exc:
+                        erreur_appel = exc
+                        break
+            else:
+                production = None
+            if production is not None and erreur_appel is None:
                 etat_mod.appliquer(vaisseau, RESSOURCE_PAR_MODULE[nom], production)
             erreur = erreur_reload or erreur_appel
             if erreur is not None:
@@ -42,26 +53,45 @@ def lancer():
                 "erreur_appel": erreur_appel,
             }
 
-        afficher(tick, vaisseau, statuts, dernieres_erreurs)
+        modules_en_echec = [
+            nom
+            for nom, statut in statuts.items()
+            if statut["erreur_reload"] is not None or statut["erreur_appel"] is not None
+        ]
+        degats = vagues.degats(vague, modules_en_echec) if vague is not None else 0
+        if degats:
+            etat_mod.appliquer(vaisseau, "integrite", -degats)
+
+        afficher(tick, vaisseau, statuts, dernieres_erreurs, vague, degats)
         time.sleep(INTERVALLE_SEC)
 
 
-def afficher(tick, vaisseau, statuts, dernieres_erreurs):
+def afficher(tick, vaisseau, statuts, dernieres_erreurs, vague, degats):
     os_clear()
-    ticks_avant_vague = INTERVALLE_VAGUE_TICKS - (tick % INTERVALLE_VAGUE_TICKS)
-    print(f"--- Vaisseau-Ecosysteme --- tick {tick} --- prochaine vague dans {ticks_avant_vague} tick(s)")
+    if vague is not None:
+        vague_txt = f"VAGUE ACTIVE : charge x{vague['charge']} | conditions degradees"
+        if degats:
+            vague_txt += f" | degats coque : {degats}"
+    else:
+        ticks_avant_vague = vagues.ticks_avant_prochaine(tick)
+        vague_txt = (
+            f"prochaine vague dans {ticks_avant_vague} tick(s)"
+            if ticks_avant_vague is not None
+            else "vague terminee"
+        )
+    print(f"--- Vaisseau-Ecosysteme --- tick {tick} --- {vague_txt}")
     print()
     for ressource, valeur in vaisseau.items():
         marque = " [CRITIQUE]" if etat_mod.est_critique(vaisseau, ressource) else ""
         print(f"{ressource:10s} {jauge(ressource, valeur)} {valeur:3d}{marque}")
     print()
     for nom, s in statuts.items():
-        if s["production"] is not None:
-            etat_txt = "OK"
-        elif s["erreur_reload"] is not None:
+        if s["erreur_reload"] is not None:
             etat_txt = "CASSE"
-        else:
+        elif s["erreur_appel"] is not None:
             etat_txt = "EN ERREUR"
+        else:
+            etat_txt = "OK"
         print(f"Module {nom:10s} : {etat_txt}")
         erreur = dernieres_erreurs.get(nom)
         if erreur is not None:

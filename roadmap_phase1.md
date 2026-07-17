@@ -29,21 +29,21 @@ Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmati
 
 ---
 
-## 1c — Système de vagues [TODO]
+## 1c — Système de vagues [FAIT]
 
-- [ ] Une vague scriptée : montée de charge sur les modules
-- [ ] Dégâts à l'intégrité de la coque si un module échoue pendant la vague
-- [ ] Timer de vague intégré au dashboard (1b)
+- [x] Une vague scriptée : montée de charge sur les modules
+- [x] Dégâts à l'intégrité de la coque si un module échoue pendant la vague
+- [x] Timer de vague intégré au dashboard (1b)
 
 **⏸ Checkpoint** — Demander à l'utilisateur de faire `/compact` avant de continuer.
 Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmation.
 
 ---
 
-## 1d — Mécanique de dette [TODO]
+## 1d — Mécanique de dette [FAIT]
 
-- [ ] Appel des modules sous conditions dégradées pendant la vague (valeurs limites, entrées inattendues)
-- [ ] Un code bâclé qui « tenait » en phase calme échoue sous charge
+- [x] Appel des modules sous conditions dégradées pendant la vague (valeurs limites, entrées inattendues)
+- [x] Un code bâclé qui « tenait » en phase calme échoue sous charge
 
 **⏸ Checkpoint** — Demander à l'utilisateur de faire `/compact` avant de continuer.
 Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmation.

@@ -1,3 +1,14 @@
+## v0.5 — 2026-07-17
+
+### Ajouté
+- `vaisseau/moteur/vagues.py` : vague scriptée, charge progressive, conditions dégradées et calcul des dégâts.
+- `vaisseau/tests/test_vagues.py` : six tests du cycle de vague, des dégâts et de la mécanique de dette.
+
+### Modifié
+- `vaisseau/moteur/boucle.py` : intégration de la vague réelle au dashboard et à l'exécution des modules.
+- `vaisseau/moteur/rechargeur.py` : persistance des erreurs de chargement jusqu'à la réparation hot-reload.
+- `roadmap_phase1.md` et `ROADMAP.md` : sous-phases 1c et 1d marquées terminées.
+
 ## v0.4 — 2026-07-17
 
 ### Modifié

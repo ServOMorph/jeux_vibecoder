@@ -16,4 +16,4 @@ Python local, point d'entrée unique `run.py`. Architecture pensée pour le hot-
 - `vaisseau/` — repo du jeu (run.py, moteur/, modules/)
 
 ## État actuel
-Phase 0 (spike hot-reload) terminée. Phase 1 (moteur de jeu minimal) en cours : modèle d'état centralisé, boucle généralisée à 3 modules (oxygène, énergie, défense) et dashboard console complet (jauges, statut modules, compte à rebours de vague, dernière erreur) livrés et testés. Prochaine étape : système de vagues.
+Phase 0 (spike hot-reload) terminée. Phase 1 (moteur de jeu minimal) en cours : modèle d'état, dashboard, vague scriptée et mécanique de dette sont livrés et testés. La vague augmente progressivement la charge, expose les modules à des conditions dégradées et endommage la coque en cas d'échec. Prochaine étape : sauvegarde / reprise.
