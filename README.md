@@ -12,10 +12,11 @@ Python local, point d'entrée unique `run.py`. Architecture pensée pour le hot-
 - `docs/brainstorm/` — historique de la session de brainstorming
 - `ROADMAP.md` — suivi d'avancement (phases, jalons)
 - `roadmap_phase1.md` — suivi détaillé des sous-phases de la Phase 1
+- `roadmap_phase2.md` — suivi détaillé du contenu pédagogique des niveaux 1 à 4
 - `roadmap_ui.md` — suivi de l'interface graphique locale
 - `_contexte/` — contexte de session (protocole vibecoding)
 - `run.py` — point d'entrée du jeu
 - `vaisseau/` — moteur, modules joueur et tests
 
 ## État actuel
-Les phases 0 et 1 sont terminées. Lancez `python run.py` depuis la racine pour ouvrir le tableau de bord ; le bouton « DÉCLENCHER VAGUE (DEV) » démarre la vague immédiatement. Le jalon J1 est validé manuellement et le moteur compte 16 tests réussis. La prochaine étape est le contenu pédagogique de la phase 2.
+Les phases 0 et 1 sont terminées, et les niveaux 1 à 4 de la phase 2 sont implémentés. Lancez `python run.py` depuis la racine pour ouvrir le tableau de bord ; l’objectif du niveau actif y est affiché. Les critères de victoire et déblocages sont déterministes et sauvegardés ; la suite compte 30 tests réussis. Restent la narration complète et la recette J2 du parcours joueur.

@@ -1,3 +1,12 @@
+## v0.8 — 2026-07-17
+
+### Ajouté
+- Quatre niveaux pédagogiques avec critères de progression déterministes et déblocage persisté.
+- Tests anti-paresse couvrant les compétences de prompt direct, contexte, découpage et lecture de code.
+
+### Modifié
+- Moteur et tableau de bord intègrent la progression de niveau ; couverture portée à 30 tests réussis.
+
 ## v0.7 — 2026-07-17
 
 ### Ajouté

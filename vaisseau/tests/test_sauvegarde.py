@@ -55,5 +55,11 @@ class SauvegardeTest(unittest.TestCase):
         self.assertEqual(affichages[0][1], reprise["etat"])
         self.assertIsNotNone(affichages[0][2])
         enregistrer.assert_called_once_with(
-            reprise["etat"], 20, {"vague_initiale_terminee": False}
+            reprise["etat"],
+            20,
+            {
+                "vague_initiale_terminee": False,
+                "niveaux_termines": [],
+                "niveau_debloque": 1,
+            },
         )

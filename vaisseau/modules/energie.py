@@ -7,3 +7,11 @@ def produire(etat):
     if etat["energie"] == 0:
         return 0
     return 10 // etat["energie"]
+
+
+def alimenter_serre(etat):
+    """Retourne 20 si la serre peut être alimentée, sinon 0.
+
+    Le seuil d'oxygène est défini dans modules/oxygene.py.
+    """
+    return 0

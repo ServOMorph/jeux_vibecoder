@@ -7,10 +7,9 @@ Vaisseau-Écosystème : jeu Python où le joueur pilote son propre agent de coda
 Projet Python local, point d'entrée unique `run.py`. Architecture pensée pour le hot-reload (modification de code par l'agent → effet observable en relançant/rechargeant). Tableau de bord Tkinter natif ; la boucle console est conservée comme fallback moteur. Aucun LLM intégré : jeu 100 % déterministe et scripté, agnostique à l'agent utilisé. Critères de victoire/progression lisibles dans le code.
 
 ## État actuel (réécrit intégralement à chaque /close)
-Les phases 0 et 1 sont terminées ; le jalon J1 est validé par une partie manuelle complète. `run.py` lance un tableau de bord Tkinter avec contrôle de partie et déclenchement direct de vague en mode développement. Le moteur est exécutable tour par tour et conserve le hot-reload, les dégâts et la sauvegarde. La suite compte 16 tests réussis. La prochaine étape est le contenu pédagogique de la phase 2.
+Les phases 0 et 1 sont terminées et le jalon J1 est validé manuellement. Les niveaux 1 à 4 de la phase 2 sont implémentés avec critères déterministes, progression sauvegardée et affichage de l’objectif dans le tableau de bord. Les tests anti-paresse couvrent chaque compétence et la suite compte 30 tests réussis. La phase 2e reste à réaliser : narration complète et recette J2 du parcours joueur.
 
 ## Décisions structurantes (append only — 10 entrées max, archiver au-delà)
-- 2026-07-17 : Initialisation du protocole vibecoding.
 - 2026-07-17 : Concept retenu — Vaisseau-Écosystème (hybride Usine à Robots + Tour de Garde), univers vaisseau-écosystème vivant à la dérive, hot-reload permanent.
 - 2026-07-17 : Rôle de l'IA tranché — agent de codage réel du joueur (pas de LLM intégré au jeu), agnostique à l'outil.
 - 2026-07-17 : MVP scopé — 1 module + 1 vague, niveaux pédagogiques 1 à 4. Extension "Mission & Audit" repoussée en post-MVP.
@@ -20,3 +19,4 @@ Les phases 0 et 1 sont terminées ; le jalon J1 est validé par une partie manue
 - 2026-07-17 : Vague initiale déterministe retenue : ticks 20 à 22, charge progressive et conditions dégradées sans altération de l'état réel.
 - 2026-07-17 : `run.py` est déplacé à la racine ; le rechargeur résout les modules sans dépendre du dossier courant.
 - 2026-07-17 : Le tableau de bord Tkinter devient l'interface par défaut ; J1 est validé manuellement et le mode développeur peut déclencher une vague immédiate.
+- 2026-07-17 : Les niveaux 1 à 4 utilisent des critères déterministes, une progression persistée et des tests anti-paresse.

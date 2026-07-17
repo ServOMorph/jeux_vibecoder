@@ -1,3 +1,6 @@
+SEUIL_OXYGENE_SERRE = 40
+
+
 def produire(etat):
     """Contrat module joueur : retourne la quantite d'oxygene produite ce tick.
 

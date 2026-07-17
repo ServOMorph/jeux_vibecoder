@@ -33,6 +33,11 @@ def statut_module(statut):
     return "OPÉRATIONNEL", COULEUR_OK
 
 
+def texte_niveau(niveau):
+    statut = "TERMINÉ" if niveau["reussi"] else "EN COURS"
+    return f"NIVEAU : {niveau['titre'].upper()} · {statut} · {niveau['objectif']}"
+
+
 class JaugeRessource(tk.Canvas):
     def __init__(self, parent, ressource):
         super().__init__(parent, height=72, background=COULEUR_PANNEAU, highlightthickness=0)
@@ -88,6 +93,8 @@ class TableauDeBord(tk.Tk):
 
         self.bandeau_vague = tk.Label(conteneur, background="#163d5c", foreground=COULEUR_TEXTE, anchor="w", padx=16, pady=12, font=("Segoe UI", 10, "bold"))
         self.bandeau_vague.pack(fill="x", pady=(0, 16))
+        self.bandeau_niveau = tk.Label(conteneur, background=COULEUR_PANNEAU, foreground=COULEUR_TEXTE, anchor="w", padx=16, pady=10, font=("Segoe UI", 10, "bold"))
+        self.bandeau_niveau.pack(fill="x", pady=(0, 16))
 
         corps = tk.Frame(conteneur, background=COULEUR_FOND)
         corps.pack(fill="both", expand=True)
@@ -130,6 +137,7 @@ class TableauDeBord(tk.Tk):
         ttk.Button(bas, text="DÉCLENCHER VAGUE (DEV)", style="Secondaire.TButton", command=self.declencher_vague_dev).pack(side="right", padx=(0, 8))
 
     def _afficher_attente(self):
+        niveau, evaluation = self.partie.etat_niveau()
         self._mettre_a_jour({
             "tick": self.partie.tick,
             "vaisseau": self.partie.vaisseau,
@@ -137,6 +145,12 @@ class TableauDeBord(tk.Tk):
             "dernieres_erreurs": self.partie.dernieres_erreurs,
             "vague": vagues.active(self.partie.tick),
             "degats": 0,
+            "niveau": {
+                "titre": niveau.titre,
+                "objectif": niveau.objectif,
+                "reussi": evaluation.reussi,
+                "diagnostic": evaluation.diagnostic,
+            },
         })
 
     def basculer(self):
@@ -177,6 +191,7 @@ class TableauDeBord(tk.Tk):
         vague = tour["vague"]
         danger = vague is not None
         self.bandeau_vague.configure(text=texte_vague(tour["tick"], vague), background="#6b2634" if danger else "#163d5c")
+        self.bandeau_niveau.configure(text=texte_niveau(tour["niveau"]))
         self.indicateur_tick.configure(text=f"TICK {tour['tick']:03d}")
         for ressource, valeur in tour["vaisseau"].items():
             self.jauges[ressource].afficher(valeur)

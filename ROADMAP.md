@@ -3,7 +3,7 @@
 > Suivi d'avancement du projet. Référence : [docs/PROJET.md](docs/PROJET.md) (concept) et [docs/PLAN_DEVELOPPEMENT.md](docs/PLAN_DEVELOPPEMENT.md) (détail des phases).
 > Convention : `[ ]` à faire · `[x]` fait · `[~]` en cours. Mettre à jour ce fichier à chaque session de travail.
 
-**État global : 🟡 Phase 2 à démarrer (phase 1 et jalon J1 validés ; voir [roadmap_phase1.md](roadmap_phase1.md) et [roadmap_ui.md](roadmap_ui.md))** *(mis à jour le 2026-07-17)*
+**État global : 🟡 Phase 2 en cours (voir [roadmap_phase2.md](roadmap_phase2.md))** *(mis à jour le 2026-07-17)*
 
 ---
 
@@ -38,12 +38,14 @@
 
 ## Phase 2 — Contenu pédagogique : niveaux 1 à 4
 
-- [ ] Format de définition de niveau (objectif, critères de victoire lisibles dans le code, déblocage)
-- [ ] Niveau 1 — Premier signal (prompt simple, un fichier)
-- [ ] Niveau 2 — Contexte (contraintes et dépendances)
-- [ ] Niveau 3 — Découpage (objectif flou → sous-tâches)
-- [ ] Niveau 4 — Lecture de code (module legacy en ruine)
-- [ ] Test anti-paresse passé sur chacun des 4 niveaux ("fais le niveau" échoue de façon instructive)
+> Suivi détaillé dans [roadmap_phase2.md](roadmap_phase2.md).
+
+- [x] Format de définition de niveau (objectif, critères de victoire lisibles dans le code, déblocage)
+- [x] Niveau 1 — Premier signal (prompt simple, un fichier)
+- [x] Niveau 2 — Contexte (contraintes et dépendances)
+- [x] Niveau 3 — Découpage (objectif flou → sous-tâches)
+- [x] Niveau 4 — Lecture de code (module legacy en ruine)
+- [x] Test anti-paresse passé sur chacun des 4 niveaux ("fais le niveau" échoue de façon instructive)
 - [ ] Narration du journal de bord (briefs ≤ 3 lignes, ton solitude/espoir)
 
 **🏁 Jalon J2** — [ ] Les 4 niveaux se terminent en vibecodant réellement

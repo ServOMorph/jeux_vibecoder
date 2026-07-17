@@ -1,6 +1,7 @@
 import time
 
 from moteur import etat as etat_mod
+from moteur import niveaux
 from moteur import rechargeur
 from moteur import sauvegarde
 from moteur import score
@@ -16,7 +17,7 @@ class Partie:
     def __init__(self, vaisseau, tick, progression):
         self.vaisseau = vaisseau
         self.tick = tick
-        self.progression = progression
+        self.progression = niveaux.initialiser_progression(progression)
         self.dernieres_erreurs = {nom: None for nom in MODULES}
 
     @classmethod
@@ -36,6 +37,12 @@ class Partie:
     def preparer_vague_dev(self):
         self.tick = vagues.TICK_DEPART - 1
         self.progression["vague_initiale_terminee"] = False
+
+    def etat_niveau(self):
+        niveau = niveaux.actif(self.progression)
+        module, erreur = rechargeur.verifier_et_recharger(niveau.module_cible)
+        evaluation = niveau.evaluer(module, erreur)
+        return niveau, evaluation
 
     def avancer(self):
         self.tick += 1
@@ -82,6 +89,10 @@ class Partie:
         if degats:
             etat_mod.appliquer(self.vaisseau, "integrite", -degats)
 
+        niveau, evaluation_niveau = self.etat_niveau()
+        if evaluation_niveau.reussi:
+            niveaux.enregistrer_victoire(self.progression, niveau)
+
         self.progression["vague_initiale_terminee"] = (
             vague is None and vagues.ticks_avant_prochaine(self.tick) is None
         )
@@ -93,6 +104,13 @@ class Partie:
             "dernieres_erreurs": self.dernieres_erreurs.copy(),
             "vague": vague,
             "degats": degats,
+            "niveau": {
+                "titre": niveau.titre,
+                "objectif": niveau.objectif,
+                "critere_victoire": niveau.critere_victoire,
+                "reussi": evaluation_niveau.reussi,
+                "diagnostic": evaluation_niveau.diagnostic,
+            },
         }
 
 

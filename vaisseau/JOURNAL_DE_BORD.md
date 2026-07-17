@@ -1,3 +1,4 @@
 # Journal de bord
 
-Spike hot-reload en cours. Module de test : `modules/oxygene.py`.
+La balise de détresse est muette. Demandez à votre agent de modifier uniquement `modules/balise.py`.
+Victoire : `emettre_signal(etat)` retourne exactement `True`.
