@@ -1,0 +1,80 @@
+# Roadmap — Vaisseau-Écosystème
+
+> Suivi d'avancement du projet. Référence : [docs/PROJET.md](docs/PROJET.md) (concept) et [docs/PLAN_DEVELOPPEMENT.md](docs/PLAN_DEVELOPPEMENT.md) (détail des phases).
+> Convention : `[ ]` à faire · `[x]` fait · `[~]` en cours. Mettre à jour ce fichier à chaque session de travail.
+
+**État global : 🔴 Phase 0 non démarrée** *(mis à jour le 2026-07-17)*
+
+---
+
+## Phase 0 — Spike hot-reload (risque #1)
+
+- [ ] Structure du repo du jeu (`run.py`, `moteur/`, `modules/`, `JOURNAL_DE_BORD.md`)
+- [ ] Boucle de jeu minimale (tick 1 s, affichage console rafraîchi)
+- [ ] Rechargeur : détection des modifications de `modules/` + `importlib.reload` + capture de toute exception sans crash
+- [ ] Module d'exemple `modules/oxygene.py` avec contrat simple
+- [ ] Test réel avec Claude Code : prompter une modification, constater l'effet en direct
+- [ ] Cas d'erreur vérifié : code cassé par l'agent → erreur affichée au dashboard, le jeu continue
+
+**🏁 Jalon J0** — [ ] Décision go/no-go : hot-reload continu **ou** repli "reprise d'état au relancement"
+> Décision prise : *(à remplir)*
+
+---
+
+## Phase 1 — Moteur de jeu minimal
+
+- [ ] Modèle d'état du vaisseau (oxygène, énergie, intégrité de la coque)
+- [ ] Dashboard console : jauges, état des modules, compte à rebours de vague, dernière erreur du code joueur
+- [ ] Système de vagues : une vague scriptée (montée de charge, dégâts si un module échoue)
+- [ ] Mécanique de dette : appel des modules sous conditions dégradées pendant la vague
+- [ ] Sauvegarde / reprise (`sauvegarde.json`)
+- [ ] Score de clarté (compteur de rechargements par module, non punitif)
+
+**🏁 Jalon J1** — [ ] Partie complète jouable (réparer un module, subir une vague, voir la dette craquer) ; boucle de jeu ressentie comme prometteuse
+
+---
+
+## Phase 2 — Contenu pédagogique : niveaux 1 à 4
+
+- [ ] Format de définition de niveau (objectif, critères de victoire lisibles dans le code, déblocage)
+- [ ] Niveau 1 — Premier signal (prompt simple, un fichier)
+- [ ] Niveau 2 — Contexte (contraintes et dépendances)
+- [ ] Niveau 3 — Découpage (objectif flou → sous-tâches)
+- [ ] Niveau 4 — Lecture de code (module legacy en ruine)
+- [ ] Test anti-paresse passé sur chacun des 4 niveaux ("fais le niveau" échoue de façon instructive)
+- [ ] Narration du journal de bord (briefs ≤ 3 lignes, ton solitude/espoir)
+
+**🏁 Jalon J2** — [ ] Les 4 niveaux se terminent en vibecodant réellement
+
+---
+
+## Phase 3 — Playtest & équilibrage
+
+- [ ] Auto-playtest complet avec Claude Code
+- [ ] Playtest avec un second agent (Cursor ou Copilot) — aucune dépendance involontaire à un outil
+- [ ] 2-3 playtests externes avec le public cible (observation sans aide)
+- [ ] Équilibrage : durée des phases calmes, sévérité des vagues, dosage de la dette
+- [ ] Corrections issues des playtests
+- [ ] README d'installation (« clonez, ouvrez votre agent, lancez `run.py` »)
+
+**🏁 Jalon J3 = MVP livrable** — [ ] Un joueur cible finit les niveaux 1-4 sans aide, avec n'importe quel agent, et sait nommer ce qu'il a appris
+
+---
+
+## Phase 4 — Post-MVP *(non planifiée en détail — ordre de valeur pressenti)*
+
+- [ ] Niveaux 5-7 (validation, itération sous pression, dette technique avancée)
+- [ ] Habillage pygame
+- [ ] Extension "Mission & Audit" (variante C en réserve dans PROJET.md)
+- [ ] Niveaux communautaires
+
+---
+
+## Journal des jalons
+
+| Jalon | Date | Décision / remarque |
+|---|---|---|
+| J0 | — | |
+| J1 | — | |
+| J2 | — | |
+| J3 | — | |
