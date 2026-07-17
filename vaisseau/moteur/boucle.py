@@ -6,6 +6,8 @@ from moteur import rechargeur
 MODULES = ["oxygene", "energie", "defense"]
 RESSOURCE_PAR_MODULE = {"oxygene": "oxygene", "energie": "energie", "defense": "integrite"}
 INTERVALLE_SEC = 1.0
+INTERVALLE_VAGUE_TICKS = 20
+LARGEUR_JAUGE = 20
 
 
 def lancer():
@@ -14,6 +16,7 @@ def lancer():
 
     vaisseau = etat_mod.initial()
     tick = 0
+    dernieres_erreurs = {nom: None for nom in MODULES}
     while True:
         tick += 1
         etat_lecture = {"tick": tick, **vaisseau}
@@ -30,29 +33,46 @@ def lancer():
                     erreur_appel = exc
             if production is not None:
                 etat_mod.appliquer(vaisseau, RESSOURCE_PAR_MODULE[nom], production)
+            erreur = erreur_reload or erreur_appel
+            if erreur is not None:
+                dernieres_erreurs[nom] = erreur
             statuts[nom] = {
                 "production": production,
                 "erreur_reload": erreur_reload,
                 "erreur_appel": erreur_appel,
             }
 
-        afficher(tick, vaisseau, statuts)
+        afficher(tick, vaisseau, statuts, dernieres_erreurs)
         time.sleep(INTERVALLE_SEC)
 
 
-def afficher(tick, vaisseau, statuts):
+def afficher(tick, vaisseau, statuts, dernieres_erreurs):
     os_clear()
-    print(f"--- Vaisseau-Ecosysteme --- tick {tick}")
+    ticks_avant_vague = INTERVALLE_VAGUE_TICKS - (tick % INTERVALLE_VAGUE_TICKS)
+    print(f"--- Vaisseau-Ecosysteme --- tick {tick} --- prochaine vague dans {ticks_avant_vague} tick(s)")
+    print()
     for ressource, valeur in vaisseau.items():
         marque = " [CRITIQUE]" if etat_mod.est_critique(vaisseau, ressource) else ""
-        print(f"{ressource} : {valeur}{marque}")
+        print(f"{ressource:10s} {jauge(ressource, valeur)} {valeur:3d}{marque}")
+    print()
     for nom, s in statuts.items():
-        etat_txt = "OK" if s["production"] is not None else "EN ERREUR"
-        print(f"Module {nom} : {etat_txt}")
-        if s["erreur_reload"] is not None:
-            print(f"  [rechargement] {type(s['erreur_reload']).__name__}: {s['erreur_reload']}")
-        if s["erreur_appel"] is not None:
-            print(f"  [execution] {type(s['erreur_appel']).__name__}: {s['erreur_appel']}")
+        if s["production"] is not None:
+            etat_txt = "OK"
+        elif s["erreur_reload"] is not None:
+            etat_txt = "CASSE"
+        else:
+            etat_txt = "EN ERREUR"
+        print(f"Module {nom:10s} : {etat_txt}")
+        erreur = dernieres_erreurs.get(nom)
+        if erreur is not None:
+            print(f"  derniere erreur : {type(erreur).__name__}: {erreur}")
+
+
+def jauge(ressource, valeur):
+    bornes = etat_mod.RESSOURCES[ressource]
+    proportion = (valeur - bornes["min"]) / (bornes["max"] - bornes["min"])
+    remplies = round(proportion * LARGEUR_JAUGE)
+    return "[" + "#" * remplies + "-" * (LARGEUR_JAUGE - remplies) + "]"
 
 
 def os_clear():

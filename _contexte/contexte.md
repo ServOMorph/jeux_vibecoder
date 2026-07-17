@@ -7,7 +7,7 @@ Vaisseau-Écosystème : jeu Python où le joueur pilote son propre agent de coda
 Projet Python local, point d'entrée unique `run.py`. Architecture pensée pour le hot-reload (modification de code par l'agent → effet observable en relançant/rechargeant). Dashboard console texte (pygame minimal en option ultérieure). Aucun LLM intégré : jeu 100 % déterministe et scripté, agnostique à l'agent utilisé. Critères de victoire/progression lisibles dans le code.
 
 ## État actuel (réécrit intégralement à chaque /close)
-Phase 0 terminée (hot-reload validé). Phase 1 démarrée, découpée en sous-phases dans `roadmap_phase1.md`. Sous-phase 1a terminée : modèle d'état centralisé (`moteur/etat.py`), boucle généralisée à 3 modules (`oxygene`, `energie`, `defense`), test manuel concluant. Prochaine étape : 1b (dashboard console complet).
+Phase 0 terminée (hot-reload validé). Phase 1 démarrée, découpée en sous-phases dans `roadmap_phase1.md`. Sous-phases 1a (modèle d'état + boucle généralisée) et 1b (dashboard console complet : jauges, statut modules, compte à rebours vague, dernière erreur) terminées. Prochaine étape : 1c (système de vagues).
 
 ## Décisions structurantes (append only — 10 entrées max, archiver au-delà)
 - 2026-07-17 : Initialisation du protocole vibecoding.

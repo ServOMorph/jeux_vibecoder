@@ -1,3 +1,9 @@
+## v0.4 — 2026-07-17
+
+### Modifié
+- `vaisseau/moteur/boucle.py` : dashboard console complet — jauges ASCII par ressource, statut par module (OK/CASSE/EN ERREUR), compte à rebours de la prochaine vague (placeholder), dernière erreur persistée par module.
+- `roadmap_phase1.md` : sous-phase 1b marquée [FAIT].
+
 ## v0.3 — 2026-07-17
 
 ### Ajouté

@@ -17,12 +17,12 @@ Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmati
 
 ---
 
-## 1b — Dashboard console complet [TODO]
+## 1b — Dashboard console complet [FAIT]
 
-- [ ] Jauges (oxygène, énergie, intégrité)
-- [ ] État de chaque module (OK / cassé / en erreur)
-- [ ] Compte à rebours de la prochaine vague
-- [ ] Dernière erreur du code joueur affichée
+- [x] Jauges (oxygène, énergie, intégrité)
+- [x] État de chaque module (OK / cassé / en erreur)
+- [x] Compte à rebours de la prochaine vague
+- [x] Dernière erreur du code joueur affichée
 
 **⏸ Checkpoint** — Demander à l'utilisateur de faire `/compact` avant de continuer.
 Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmation.
