@@ -1,7 +1,7 @@
 # Signals — jeux_vibecoder   (MAJ 2026-07-17)
 
 ## Actions ouvertes
-- [P1|ouvert] Démarrer la Phase 1 du plan de dev : moteur de jeu minimal (état du vaisseau, dashboard, vagues, dette, sauvegarde, score) — fait quand: une partie complète est jouable à la main (réparer un module, subir une vague, voir la dette craquer) — réf: docs/PLAN_DEVELOPPEMENT.md (Phase 1), ROADMAP.md (Jalon J1)
+- [P1|ouvert] Sous-phase 1b : dashboard console complet (jauges, état modules, compte à rebours vague, dernière erreur) — fait quand: le dashboard affiche jauges + statut modules + timer vague + dernière erreur — réf: roadmap_phase1.md (section 1b)
 
 ## Questions ouvertes
 
@@ -10,31 +10,29 @@
 ## Blocages
 
 ## Contexte chaud
-- Jalon J0 franchi : hot-reload continu validé (repo `vaisseau/` créé et fonctionnel : run.py, moteur/boucle.py, moteur/rechargeur.py, modules/oxygene.py). Aucun repli "reprise d'état" nécessaire. Jalon J1 conditionne le ressenti de fun de la boucle de jeu (risque #2).
+- Jalon J0 franchi : hot-reload continu validé, pas de repli nécessaire.
+- Phase 1 découpée en sous-phases dans `roadmap_phase1.md` (1a à 1f), avec checkpoint `/compact` après chacune. 1a terminée, 1b prête à démarrer.
+- Contrat module généralisé : `produire(etat) -> int`, un module par ressource (`oxygene`, `energie`, `defense` -> intégrité). Modules `energie.py` et `defense.py` retournent 0 par défaut (pas encore de contenu pédagogique).
 
 ## Dernière session (2026-07-17)
 <!-- Écrasé intégralement par /close. Synthèse < 25 lignes. -->
 # Session du 2026-07-17
 
 ## Décisions prises
-- Jalon J0 tranché : hot-reload continu retenu (spike concluant, pas de repli sur "reprise d'état")
+- Roadmap dédiée créée pour la Phase 1 (`roadmap_phase1.md`), découpée en 6 sous-phases (1a-1f) avec checkpoints `/compact`
 
 ## Livrables produits ou modifiés
-- vaisseau/run.py : créé
-- vaisseau/moteur/boucle.py : créé
-- vaisseau/moteur/rechargeur.py : créé
-- vaisseau/modules/oxygene.py : créé
-- vaisseau/JOURNAL_DE_BORD.md : créé
-- vaisseau/.gitignore : créé
-- ROADMAP.md : Phase 0 cochée, Jalon J0 renseigné
-- _contexte/signals.md : mis à jour
+- roadmap_phase1.md : créé
+- vaisseau/moteur/etat.py : créé (modèle d'état centralisé, seuils critiques)
+- vaisseau/modules/energie.py : créé
+- vaisseau/modules/defense.py : créé
+- vaisseau/moteur/boucle.py : généralisé pour piloter 3 modules (oxygene, energie, defense) au lieu d'un seul en dur
 
 ## Hypothèses validées / invalidées
-- VALIDE : faisabilité du hot-reload continu (modification de valeur répercutée en direct, erreur de syntaxe volontaire capturée sans crash de la boucle)
-- EN ATTENTE : fun sans input direct dans le jeu (à vérifier en playtest, Phase 3)
+- VALIDE : la boucle généralisée à plusieurs modules fonctionne sans erreur (test manuel, 3 ticks, aucune exception)
 
 ## Prochaine étape exacte
-Démarrer la Phase 1 : modèle d'état du vaisseau, dashboard console complet, système de vagues, mécanique de dette, sauvegarde, score de clarté.
+Sous-phase 1b : dashboard console complet (jauges, état des modules, compte à rebours de vague, dernière erreur).
 
 ## Question bloquante pour la session suivante
 Aucune

@@ -3,7 +3,7 @@
 > Suivi d'avancement du projet. Référence : [docs/PROJET.md](docs/PROJET.md) (concept) et [docs/PLAN_DEVELOPPEMENT.md](docs/PLAN_DEVELOPPEMENT.md) (détail des phases).
 > Convention : `[ ]` à faire · `[x]` fait · `[~]` en cours. Mettre à jour ce fichier à chaque session de travail.
 
-**État global : 🟢 Phase 0 terminée — Phase 1 à démarrer** *(mis à jour le 2026-07-17)*
+**État global : 🟡 Phase 1 en cours (sous-phase 1a terminée — voir [roadmap_phase1.md](roadmap_phase1.md))** *(mis à jour le 2026-07-17)*
 
 ---
 
@@ -23,7 +23,9 @@
 
 ## Phase 1 — Moteur de jeu minimal
 
-- [ ] Modèle d'état du vaisseau (oxygène, énergie, intégrité de la coque)
+> Suivi détaillé dans [roadmap_phase1.md](roadmap_phase1.md).
+
+- [x] Modèle d'état du vaisseau (oxygène, énergie, intégrité de la coque)
 - [ ] Dashboard console : jauges, état des modules, compte à rebours de vague, dernière erreur du code joueur
 - [ ] Système de vagues : une vague scriptée (montée de charge, dégâts si un module échoue)
 - [ ] Mécanique de dette : appel des modules sous conditions dégradées pendant la vague

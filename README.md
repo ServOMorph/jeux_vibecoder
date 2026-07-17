@@ -11,8 +11,9 @@ Python local, point d'entrée unique `run.py`. Architecture pensée pour le hot-
 - `docs/PLAN_DEVELOPPEMENT.md` — plan de développement par phases
 - `docs/brainstorm/` — historique de la session de brainstorming
 - `ROADMAP.md` — suivi d'avancement (phases, jalons)
+- `roadmap_phase1.md` — suivi détaillé des sous-phases de la Phase 1
 - `_contexte/` — contexte de session (protocole vibecoding)
 - `vaisseau/` — repo du jeu (run.py, moteur/, modules/)
 
 ## État actuel
-Phase 0 (spike hot-reload) terminée. Repo du jeu créé dans `vaisseau/` : boucle de jeu, rechargeur de modules, module d'exemple. Jalon J0 tranché — hot-reload continu retenu. Prochaine étape : Phase 1 (moteur de jeu minimal).
+Phase 0 (spike hot-reload) terminée. Phase 1 (moteur de jeu minimal) en cours : modèle d'état centralisé et boucle généralisée à 3 modules (oxygène, énergie, défense) livrés, testés sans erreur. Prochaine étape : dashboard console complet.

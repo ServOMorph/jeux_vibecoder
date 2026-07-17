@@ -1,3 +1,14 @@
+## v0.3 — 2026-07-17
+
+### Ajouté
+- `roadmap_phase1.md` : suivi détaillé de la Phase 1, découpée en sous-phases 1a-1f avec checkpoints `/compact`.
+- `vaisseau/moteur/etat.py` : modèle d'état centralisé du vaisseau (oxygène, énergie, intégrité, seuils critiques).
+- `vaisseau/modules/energie.py`, `vaisseau/modules/defense.py` : modules joueur additionnels.
+
+### Modifié
+- `vaisseau/moteur/boucle.py` : généralisé pour piloter plusieurs modules (au lieu du seul `oxygene` en dur).
+- `ROADMAP.md` : Phase 1 marquée en cours, renvoi vers `roadmap_phase1.md`.
+
 ## v0.2 — 2026-07-17
 
 ### Ajouté
