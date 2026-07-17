@@ -3,7 +3,7 @@
 > Suivi d'avancement du projet. Référence : [docs/PROJET.md](docs/PROJET.md) (concept) et [docs/PLAN_DEVELOPPEMENT.md](docs/PLAN_DEVELOPPEMENT.md) (détail des phases).
 > Convention : `[ ]` à faire · `[x]` fait · `[~]` en cours. Mettre à jour ce fichier à chaque session de travail.
 
-**État global : 🟡 Phase 1 en cours (sous-phase 1d terminée — voir [roadmap_phase1.md](roadmap_phase1.md))** *(mis à jour le 2026-07-17)*
+**État global : 🟡 Phase 1 en cours (sous-phases 1a à 1f livrées ; validation manuelle du jalon J1 en attente — voir [roadmap_phase1.md](roadmap_phase1.md))** *(mis à jour le 2026-07-17)*
 
 ---
 
@@ -29,8 +29,8 @@
 - [x] Dashboard console : jauges, état des modules, compte à rebours de vague, dernière erreur du code joueur
 - [x] Système de vagues : une vague scriptée (montée de charge, dégâts si un module échoue)
 - [x] Mécanique de dette : appel des modules sous conditions dégradées pendant la vague
-- [ ] Sauvegarde / reprise (`sauvegarde.json`)
-- [ ] Score de clarté (compteur de rechargements par module, non punitif)
+- [x] Sauvegarde / reprise (`sauvegarde.json`)
+- [x] Score de clarté (compteur de rechargements par module, non punitif)
 
 **🏁 Jalon J1** — [ ] Partie complète jouable (réparer un module, subir une vague, voir la dette craquer) ; boucle de jeu ressentie comme prometteuse
 

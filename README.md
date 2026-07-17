@@ -13,7 +13,8 @@ Python local, point d'entrée unique `run.py`. Architecture pensée pour le hot-
 - `ROADMAP.md` — suivi d'avancement (phases, jalons)
 - `roadmap_phase1.md` — suivi détaillé des sous-phases de la Phase 1
 - `_contexte/` — contexte de session (protocole vibecoding)
-- `vaisseau/` — repo du jeu (run.py, moteur/, modules/)
+- `run.py` — point d'entrée du jeu
+- `vaisseau/` — moteur, modules joueur et tests
 
 ## État actuel
-Phase 0 (spike hot-reload) terminée. Phase 1 (moteur de jeu minimal) en cours : modèle d'état, dashboard, vague scriptée et mécanique de dette sont livrés et testés. La vague augmente progressivement la charge, expose les modules à des conditions dégradées et endommage la coque en cas d'échec. Prochaine étape : sauvegarde / reprise.
+Phase 0 terminée. Les sous-phases de la phase 1 sont livrées : état, dashboard, vague, dette, sauvegarde/reprise et score d'itérations. Lancez `python run.py` depuis la racine. Le moteur compte 11 tests réussis ; le jalon J1 attend une validation manuelle d'une partie complète.

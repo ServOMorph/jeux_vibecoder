@@ -1,5 +1,7 @@
 import importlib
-import os
+from pathlib import Path
+
+from moteur import score
 
 _mtimes = {}
 _modules = {}
@@ -7,12 +9,12 @@ _erreurs = {}
 
 
 def _chemin(nom_module):
-    return os.path.join("modules", nom_module + ".py")
+    return Path(__file__).resolve().parent.parent / "modules" / f"{nom_module}.py"
 
 
 def charger(nom_module):
     chemin = _chemin(nom_module)
-    _mtimes[nom_module] = os.path.getmtime(chemin)
+    _mtimes[nom_module] = chemin.stat().st_mtime
     try:
         module = importlib.import_module("modules." + nom_module)
         _modules[nom_module] = module
@@ -30,11 +32,12 @@ def verifier_et_recharger(nom_module):
     dans _modules si un chargement precedent a reussi.
     """
     chemin = _chemin(nom_module)
-    mtime_actuel = os.path.getmtime(chemin)
+    mtime_actuel = chemin.stat().st_mtime
     if _mtimes.get(nom_module) == mtime_actuel:
         return _modules.get(nom_module), _erreurs.get(nom_module)
 
     _mtimes[nom_module] = mtime_actuel
+    score.enregistrer_rechargement(nom_module)
     try:
         if nom_module in _modules:
             module = importlib.reload(_modules[nom_module])

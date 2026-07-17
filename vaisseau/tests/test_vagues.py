@@ -58,6 +58,8 @@ class VaguesTest(unittest.TestCase):
             patch.object(boucle.vagues, "TICK_DEPART", 1),
             patch.object(boucle.rechargeur, "charger"),
             patch.object(boucle.rechargeur, "verifier_et_recharger", side_effect=verifier),
+            patch.object(boucle.sauvegarde, "charger", return_value=None),
+            patch.object(boucle.sauvegarde, "enregistrer"),
             patch.object(boucle, "afficher", side_effect=afficher),
             patch.object(boucle.time, "sleep", side_effect=StopIteration),
         ):
@@ -97,6 +99,8 @@ class VaguesTest(unittest.TestCase):
             patch.object(boucle.vagues, "TICK_DEPART", 1),
             patch.object(boucle.rechargeur, "charger"),
             patch.object(boucle.rechargeur, "verifier_et_recharger", side_effect=verifier),
+            patch.object(boucle.sauvegarde, "charger", return_value=None),
+            patch.object(boucle.sauvegarde, "enregistrer"),
             patch.object(boucle, "afficher", side_effect=afficher),
             patch.object(boucle.time, "sleep", side_effect=StopIteration),
         ):

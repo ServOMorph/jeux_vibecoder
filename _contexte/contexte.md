@@ -7,7 +7,7 @@ Vaisseau-Écosystème : jeu Python où le joueur pilote son propre agent de coda
 Projet Python local, point d'entrée unique `run.py`. Architecture pensée pour le hot-reload (modification de code par l'agent → effet observable en relançant/rechargeant). Dashboard console texte (pygame minimal en option ultérieure). Aucun LLM intégré : jeu 100 % déterministe et scripté, agnostique à l'agent utilisé. Critères de victoire/progression lisibles dans le code.
 
 ## État actuel (réécrit intégralement à chaque /close)
-Phase 0 terminée (hot-reload validé). Phase 1 est découpée dans `roadmap_phase1.md` ; les sous-phases 1a à 1d sont terminées. Une vague déterministe exécute une charge progressive, des conditions dégradées et des dégâts de coque par module défaillant. La mécanique est couverte par 6 tests moteur. Prochaine étape : 1e (sauvegarde / reprise).
+Phase 0 terminée. Les sous-phases 1a à 1f de la phase 1 sont livrées : état, dashboard, vague, dette, sauvegarde/reprise et score d'itérations. `run.py` est désormais à la racine et fonctionne depuis l'IDE. Le moteur compte 11 tests réussis. Le jalon J1 reste à valider par une partie manuelle complète avec module fragile pendant la vague.
 
 ## Décisions structurantes (append only — 10 entrées max, archiver au-delà)
 - 2026-07-17 : Initialisation du protocole vibecoding.
@@ -18,3 +18,4 @@ Phase 0 terminée (hot-reload validé). Phase 1 est découpée dans `roadmap_pha
 - 2026-07-17 : Jalon J0 tranché — hot-reload continu validé par spike, pas de repli sur "reprise d'état".
 - 2026-07-17 : Phase 1 découpée en sous-phases (1a-1f) dans `roadmap_phase1.md`, avec checkpoint `/compact` après chacune.
 - 2026-07-17 : Vague initiale déterministe retenue : ticks 20 à 22, charge progressive et conditions dégradées sans altération de l'état réel.
+- 2026-07-17 : `run.py` est déplacé à la racine ; le rechargeur résout les modules sans dépendre du dossier courant.

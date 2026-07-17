@@ -50,19 +50,19 @@ Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmati
 
 ---
 
-## 1e — Sauvegarde / reprise [TODO]
+## 1e — Sauvegarde / reprise [FAIT]
 
-- [ ] `sauvegarde.json` : état du vaisseau, tick, progression
-- [ ] Chargement au lancement si le fichier existe
+- [x] `sauvegarde.json` : état du vaisseau, tick, progression
+- [x] Chargement au lancement si le fichier existe
 
 **⏸ Checkpoint** — Demander à l'utilisateur de faire `/compact` avant de continuer.
 Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmation.
 
 ---
 
-## 1f — Score de clarté [TODO]
+## 1f — Score de clarté [FAIT]
 
-- [ ] Compteur de rechargements par module (proxy du nombre d'itérations de prompt)
-- [ ] Affichage non punitif dans le dashboard
+- [x] Compteur de rechargements par module (proxy du nombre d'itérations de prompt)
+- [x] Affichage non punitif dans le dashboard
 
 **🏁 Jalon J1** — Partie complète jouable (réparer un module, subir une vague, voir la dette craquer) ; boucle de jeu ressentie comme prometteuse.

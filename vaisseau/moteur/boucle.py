@@ -2,6 +2,8 @@ import time
 
 from moteur import etat as etat_mod
 from moteur import rechargeur
+from moteur import sauvegarde
+from moteur import score
 from moteur import vagues
 
 MODULES = ["oxygene", "energie", "defense"]
@@ -14,8 +16,15 @@ def lancer():
     for nom in MODULES:
         rechargeur.charger(nom)
 
-    vaisseau = etat_mod.initial()
-    tick = 0
+    reprise = sauvegarde.charger()
+    if reprise is None:
+        vaisseau = etat_mod.initial()
+        tick = 0
+        progression = {"vague_initiale_terminee": False}
+    else:
+        vaisseau = reprise["etat"]
+        tick = reprise["tick"]
+        progression = reprise["progression"]
     dernieres_erreurs = {nom: None for nom in MODULES}
     while True:
         tick += 1
@@ -62,6 +71,10 @@ def lancer():
         if degats:
             etat_mod.appliquer(vaisseau, "integrite", -degats)
 
+        progression["vague_initiale_terminee"] = (
+            vague is None and vagues.ticks_avant_prochaine(tick) is None
+        )
+        sauvegarde.enregistrer(vaisseau, tick, progression)
         afficher(tick, vaisseau, statuts, dernieres_erreurs, vague, degats)
         time.sleep(INTERVALLE_SEC)
 
@@ -92,7 +105,8 @@ def afficher(tick, vaisseau, statuts, dernieres_erreurs, vague, degats):
             etat_txt = "EN ERREUR"
         else:
             etat_txt = "OK"
-        print(f"Module {nom:10s} : {etat_txt}")
+        iterations = score.nombre_rechargements(nom)
+        print(f"Module {nom:10s} : {etat_txt} | iterations IA : {iterations}")
         erreur = dernieres_erreurs.get(nom)
         if erreur is not None:
             print(f"  derniere erreur : {type(erreur).__name__}: {erreur}")

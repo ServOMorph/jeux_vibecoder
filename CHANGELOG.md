@@ -1,3 +1,13 @@
+## v0.6 — 2026-07-17
+
+### Ajouté
+- Sauvegarde atomique et reprise de l'état, du tick et de la progression dans `sauvegarde.json`.
+- Compteur non punitif d'itérations IA par module, affiché dans le dashboard.
+
+### Modifié
+- `run.py` devient le point d'entrée à la racine ; le rechargeur trouve les modules depuis tout dossier courant.
+- Couverture moteur portée à 11 tests.
+
 ## v0.5 — 2026-07-17
 
 ### Ajouté
