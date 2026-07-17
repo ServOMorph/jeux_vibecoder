@@ -3,7 +3,7 @@
 > Suivi d'avancement du projet. Référence : [docs/PROJET.md](docs/PROJET.md) (concept) et [docs/PLAN_DEVELOPPEMENT.md](docs/PLAN_DEVELOPPEMENT.md) (détail des phases).
 > Convention : `[ ]` à faire · `[x]` fait · `[~]` en cours. Mettre à jour ce fichier à chaque session de travail.
 
-**État global : 🟡 Phase 2 en cours (voir [roadmap_phase2.md](roadmap_phase2.md))** *(mis à jour le 2026-07-17)*
+**État global : 🟡 Phase 3 à lancer (voir [roadmap_phase2.md](roadmap_phase2.md))** *(mis à jour le 2026-07-17)*
 
 ---
 
@@ -46,9 +46,9 @@
 - [x] Niveau 3 — Découpage (objectif flou → sous-tâches)
 - [x] Niveau 4 — Lecture de code (module legacy en ruine)
 - [x] Test anti-paresse passé sur chacun des 4 niveaux ("fais le niveau" échoue de façon instructive)
-- [ ] Narration du journal de bord (briefs ≤ 3 lignes, ton solitude/espoir)
+- [x] Narration du journal de bord (briefs ≤ 3 lignes, ton solitude/espoir)
 
-**🏁 Jalon J2** — [ ] Les 4 niveaux se terminent en vibecodant réellement
+**🏁 Jalon J2** — [x] Les 4 niveaux se terminent en vibecodant réellement
 
 ---
 
@@ -80,5 +80,5 @@
 |---|---|---|
 | J0 | 2026-07-17 | Hot-reload continu validé, pas de repli nécessaire |
 | J1 | 2026-07-17 | Panne sous vague, dégâts, correction hot-reload et fin de vague validées manuellement dans l'interface Tkinter |
-| J2 | — | |
+| J2 | 2026-07-17 | Parcours agent validé : quatre niveaux terminés, déblocages persistés et 31 tests verts |
 | J3 | — | |

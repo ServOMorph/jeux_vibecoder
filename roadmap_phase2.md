@@ -43,10 +43,10 @@ Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmati
 
 ---
 
-## 2e — Narration et recette J2 [EN COURS]
+## 2e — Narration et recette J2 [FAIT]
 
-- [ ] Briefs du journal de bord en trois lignes maximum
-- [ ] Recette des quatre niveaux et du déblocage de progression
+- [x] Briefs du journal de bord en trois lignes maximum
+- [x] Recette des quatre niveaux et du déblocage de progression : agent de codage, sauvegarde `[1, 2, 3, 4]` et 31 tests verts
 
 **⏸ Checkpoint** — Demander à l'utilisateur de faire `/compact` avant de continuer.
 Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmation.

@@ -1,7 +1,7 @@
 # Signals — jeux_vibecoder (MAJ 2026-07-17)
 
 ## Actions ouvertes
-- [P1|ouvert] Finaliser la recette J2 et la narration des niveaux — fait quand: les quatre briefs du journal respectent trois lignes maximum et une recette valide le parcours complet, les déblocages et les quatre tests anti-paresse ; réf: `roadmap_phase2.md` (2e), `vaisseau/moteur/niveaux/`, `vaisseau/tests/test_niveaux.py`
+- [P1|ouvert] Réaliser l’auto-playtest de la phase 3 avec Claude Code — fait quand: un parcours complet des niveaux 1 à 4 est réalisé avec Claude Code et les observations de friction sont consignées ; réf: `ROADMAP.md` (phase 3), `docs/PLAN_DEVELOPPEMENT.md`, `vaisseau/JOURNAL_DE_BORD.md`
 
 ## Questions ouvertes
 
@@ -10,34 +10,32 @@
 ## Blocages
 
 ## Contexte chaud
-- Jalon J0 franchi : hot-reload continu validé, pas de repli nécessaire.
-- Jalon J1 franchi : la boucle complète panne, dégâts, correction hot-reload et fin de vague a été validée manuellement.
-- Les niveaux 1 à 4 ont un critère de victoire déterministe, une progression persistée et un test anti-paresse dédié.
-- Les niveaux actifs ciblent successivement la balise, l’énergie, la serre et la défense ; le tableau de bord affiche leur objectif.
-- La vague unique se déroule aux ticks 20 à 22, avec une charge de 1 à 3 appels par module et 10 dégâts de coque par module défaillant.
-- La suite moteur et UI compte 30 tests réussis.
+- Les jalons J0, J1 et J2 sont validés.
+- J2 a été réalisé avec un agent de codage : les quatre niveaux ont été réparés sans modification manuelle.
+- La sauvegarde confirme `niveaux_termines: [1, 2, 3, 4]` et `niveau_debloque: 4`.
+- La suite moteur et UI compte 31 tests réussis.
+- La phase 3 n’est pas commencée ; son premier travail est l’auto-playtest avec Claude Code.
 
 ## Dernière session (2026-07-17)
 <!-- Écrasé intégralement par /close. Synthèse < 25 lignes. -->
 # Session du 2026-07-17
 
 ## Décisions prises
-- Les niveaux utilisent une définition commune, une vérification déterministe et un déblocage persisté.
-- Les quatre compétences MVP sont incarnées par les niveaux Premier signal, Contexte, Découpage et Lecture de code.
+- Le jalon J2 est validé après un parcours complet des quatre niveaux avec un agent de codage.
 
 ## Livrables produits ou modifiés
-- `vaisseau/moteur/niveaux/` : format commun et définitions des quatre niveaux.
-- `vaisseau/modules/` : balise, serre et contrats pédagogiques énergie, oxygène et défense.
-- `vaisseau/moteur/boucle.py` et `ui.py` : progression de niveau et objectif affiché.
-- `vaisseau/tests/` : recette de progression et tests anti-paresse ; 30 tests réussis.
+- `vaisseau/JOURNAL_DE_BORD.md` : quatre briefs de niveau, chacun en deux lignes.
+- `vaisseau/modules/` : balise, énergie, serre et défense réparées pour le parcours J2.
+- `vaisseau/tests/test_journal_de_bord.py` : contrôle de la structure des briefs.
+- `roadmap_phase2.md`, `ROADMAP.md`, `README.md` : état aligné sur J2 validé.
 
 ## Hypothèses validées / invalidées
-- VALIDE : les critères de victoire et déblocages sont déterministes et persistés dans la sauvegarde.
-- VALIDE : un retour constant, une réponse globale ou une réécriture legacy aveugle échouent de façon explicite.
-- EN ATTENTE : narration complète des niveaux et recette J2 du parcours joueur.
+- VALIDE : le parcours agent → hot-reload → déblocage fonctionne pour les quatre niveaux.
+- VALIDE : la progression est persistée avec les niveaux `[1, 2, 3, 4]` et le déblocage `4`.
+- EN ATTENTE : robustesse du parcours avec Claude Code, un second agent et des joueurs externes.
 
 ## Prochaine étape exacte
-Écrire les briefs de journal pour les quatre niveaux, puis exécuter la recette J2 du parcours complet.
+Réaliser l’auto-playtest complet de phase 3 avec Claude Code et consigner les frictions observées.
 
 ## Question bloquante pour la session suivante
 Aucune

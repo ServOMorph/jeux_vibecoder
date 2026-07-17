@@ -1,3 +1,12 @@
+## v0.9 — 2026-07-17
+
+### Ajouté
+- Quatre briefs de journal de bord et leur test de structure.
+
+### Modifié
+- Modules joueur réparés au cours du parcours J2 avec un agent de codage.
+- Jalon J2 validé : quatre niveaux terminés, progression persistée et 31 tests réussis.
+
 ## v0.8 — 2026-07-17
 
 ### Ajouté

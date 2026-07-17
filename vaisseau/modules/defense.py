@@ -9,7 +9,7 @@ def interpreter_signal(etat):
     signal = normaliser_signal(etat.get("signal_externe"))
     if not signal:
         return "VEILLE"
-    return "VEILLE"
+    return "PROTEGER"
 
 
 def produire(etat):

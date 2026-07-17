@@ -1,3 +1,6 @@
+from modules.oxygene import SEUIL_OXYGENE_SERRE
+
+
 def produire(etat):
     """Contrat module joueur : retourne le delta d'energie ce tick.
 
@@ -14,4 +17,6 @@ def alimenter_serre(etat):
 
     Le seuil d'oxygène est défini dans modules/oxygene.py.
     """
-    return 0
+    if etat["oxygene"] < SEUIL_OXYGENE_SERRE or etat["energie"] < 20:
+        return 0
+    return 20

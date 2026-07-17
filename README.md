@@ -19,4 +19,4 @@ Python local, point d'entrée unique `run.py`. Architecture pensée pour le hot-
 - `vaisseau/` — moteur, modules joueur et tests
 
 ## État actuel
-Les phases 0 et 1 sont terminées, et les niveaux 1 à 4 de la phase 2 sont implémentés. Lancez `python run.py` depuis la racine pour ouvrir le tableau de bord ; l’objectif du niveau actif y est affiché. Les critères de victoire et déblocages sont déterministes et sauvegardés ; la suite compte 30 tests réussis. Restent la narration complète et la recette J2 du parcours joueur.
+Les phases 0 à 2 sont terminées et les jalons J0, J1 et J2 sont validés. Lancez `python run.py` depuis la racine pour ouvrir le tableau de bord ; les quatre niveaux sont terminables avec un agent de codage et leurs déblocages sont sauvegardés. Le journal contient les quatre briefs et la suite compte 31 tests réussis. La prochaine étape est la phase 3 de playtest et d’équilibrage.
