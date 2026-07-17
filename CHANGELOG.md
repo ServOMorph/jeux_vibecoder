@@ -1,3 +1,13 @@
+## v0.7 — 2026-07-17
+
+### Ajouté
+- Tableau de bord Tkinter local : ressources, états des modules, vague, erreurs et commandes de partie.
+- Mode développeur permettant de déclencher immédiatement la vague pour tester le hot-reload et les dégâts.
+
+### Modifié
+- Moteur exécuté tour par tour pour être piloté par l'interface ; couverture portée à 16 tests.
+- Jalon J1 validé manuellement : panne sous vague, dégâts, correction hot-reload et fin de vague.
+
 ## v0.6 — 2026-07-17
 
 ### Ajouté

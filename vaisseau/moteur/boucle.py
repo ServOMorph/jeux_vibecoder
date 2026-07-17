@@ -12,24 +12,35 @@ INTERVALLE_SEC = 1.0
 LARGEUR_JAUGE = 20
 
 
-def lancer():
-    for nom in MODULES:
-        rechargeur.charger(nom)
+class Partie:
+    def __init__(self, vaisseau, tick, progression):
+        self.vaisseau = vaisseau
+        self.tick = tick
+        self.progression = progression
+        self.dernieres_erreurs = {nom: None for nom in MODULES}
 
-    reprise = sauvegarde.charger()
-    if reprise is None:
-        vaisseau = etat_mod.initial()
-        tick = 0
-        progression = {"vague_initiale_terminee": False}
-    else:
-        vaisseau = reprise["etat"]
-        tick = reprise["tick"]
-        progression = reprise["progression"]
-    dernieres_erreurs = {nom: None for nom in MODULES}
-    while True:
-        tick += 1
-        etat_lecture = {"tick": tick, **vaisseau}
-        vague = vagues.active(tick)
+    @classmethod
+    def charger(cls):
+        for nom in MODULES:
+            rechargeur.charger(nom)
+
+        reprise = sauvegarde.charger()
+        if reprise is None:
+            return cls.nouvelle()
+        return cls(reprise["etat"], reprise["tick"], reprise["progression"])
+
+    @classmethod
+    def nouvelle(cls):
+        return cls(etat_mod.initial(), 0, {"vague_initiale_terminee": False})
+
+    def preparer_vague_dev(self):
+        self.tick = vagues.TICK_DEPART - 1
+        self.progression["vague_initiale_terminee"] = False
+
+    def avancer(self):
+        self.tick += 1
+        etat_lecture = {"tick": self.tick, **self.vaisseau}
+        vague = vagues.active(self.tick)
         charge = vague["charge"] if vague is not None else 1
         if vague is not None:
             etat_lecture = vagues.etat_sous_charge(etat_lecture, vague)
@@ -52,10 +63,10 @@ def lancer():
             else:
                 production = None
             if production is not None and erreur_appel is None:
-                etat_mod.appliquer(vaisseau, RESSOURCE_PAR_MODULE[nom], production)
+                etat_mod.appliquer(self.vaisseau, RESSOURCE_PAR_MODULE[nom], production)
             erreur = erreur_reload or erreur_appel
             if erreur is not None:
-                dernieres_erreurs[nom] = erreur
+                self.dernieres_erreurs[nom] = erreur
             statuts[nom] = {
                 "production": production,
                 "erreur_reload": erreur_reload,
@@ -69,13 +80,34 @@ def lancer():
         ]
         degats = vagues.degats(vague, modules_en_echec) if vague is not None else 0
         if degats:
-            etat_mod.appliquer(vaisseau, "integrite", -degats)
+            etat_mod.appliquer(self.vaisseau, "integrite", -degats)
 
-        progression["vague_initiale_terminee"] = (
-            vague is None and vagues.ticks_avant_prochaine(tick) is None
+        self.progression["vague_initiale_terminee"] = (
+            vague is None and vagues.ticks_avant_prochaine(self.tick) is None
         )
-        sauvegarde.enregistrer(vaisseau, tick, progression)
-        afficher(tick, vaisseau, statuts, dernieres_erreurs, vague, degats)
+        sauvegarde.enregistrer(self.vaisseau, self.tick, self.progression)
+        return {
+            "tick": self.tick,
+            "vaisseau": self.vaisseau.copy(),
+            "statuts": statuts,
+            "dernieres_erreurs": self.dernieres_erreurs.copy(),
+            "vague": vague,
+            "degats": degats,
+        }
+
+
+def lancer():
+    partie = Partie.charger()
+    while True:
+        tour = partie.avancer()
+        afficher(
+            tour["tick"],
+            tour["vaisseau"],
+            tour["statuts"],
+            tour["dernieres_erreurs"],
+            tour["vague"],
+            tour["degats"],
+        )
         time.sleep(INTERVALLE_SEC)
 
 

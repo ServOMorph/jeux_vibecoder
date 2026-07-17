@@ -4,4 +4,6 @@ def produire(etat):
     etat : dict d'etat du vaisseau (lecture seule), cle 'tick' disponible.
     Pendant une vague, les ressources peuvent etre a 0 et 'signal_externe' a None.
     """
-    return 0
+    if etat["energie"] == 0:
+        return 0
+    return 10 // etat["energie"]

@@ -65,4 +65,4 @@ Attendre sa réponse écrite. Ne pas commencer la phase suivante sans confirmati
 - [x] Compteur de rechargements par module (proxy du nombre d'itérations de prompt)
 - [x] Affichage non punitif dans le dashboard
 
-**🏁 Jalon J1** — Partie complète jouable (réparer un module, subir une vague, voir la dette craquer) ; boucle de jeu ressentie comme prometteuse.
+**🏁 Jalon J1 [FAIT]** — Partie complète jouable : panne sous vague, dégâts, correction hot-reload et fin de vague validées manuellement.
