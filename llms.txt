@@ -1,0 +1,45 @@
+# jeux_vibecoder
+
+> Jeu pédagogique Python : le joueur pilote son agent de codage IA (Claude Code, Cursor, Copilot) par des prompts pour réparer un vaisseau-écosystème dont les systèmes sont du vrai code inachevé. Le jeu n'a pas d'interface autonome — le jeu, c'est le code lui-même. Le joueur joue dans le chat de son agent, qui modifie les fichiers réels ; `run.py` reflète l'effet en direct.
+
+## Stack
+- Python 3.10+ (PEP 604 `X | None`).
+- Stdlib uniquement : `tkinter` (UI), `json`, `pathlib`, `urllib`, `importlib`. Aucune dépendance externe, aucun `pip install`.
+- Aucun LLM intégré : moteur 100 % déterministe et scripté, agnostique à l'agent de codage utilisé.
+
+## Points d'entrée
+- `run.py` — ouvre le tableau de bord Tkinter.
+- `vaisseau/moteur/boucle.py` — affichage console + classe `Partie` (logique de jeu).
+- `vaisseau/moteur/ui.py` — UI Tkinter qui pilote la même `Partie`.
+
+## Architecture
+Le moteur tourne tick par tick (1 s). À chaque `Partie.avancer()` :
+1. État central (`moteur/etat.py`) : ressources bornées `oxygene`, `energie`, `integrite`, avec seuils critiques.
+2. Vagues (`moteur/vagues.py`) : à partir du tick 20, 3 vagues de charge 1 → 2 → 3 ; conditions dégradées, dégâts de coque par module en échec.
+3. Modules (`vaisseau/modules/*.py`) : chacun expose `produire(etat) -> int`. Rechargeur (`moteur/rechargeur.py`) relit le fichier à chaque tick = hot-reload : l'agent IA édite un module, l'effet apparaît au tick suivant.
+4. Niveaux (`moteur/niveaux/niveau_1..4.py`) : critère déterministe anti-paresse sur le module cible ; réussite = progression persistée + déblocage du niveau suivant.
+5. Sauvegarde atomique dans `vaisseau/sauvegarde.json` (`moteur/sauvegarde.py`).
+
+## Progression pédagogique
+- Niveau 1 — Premier signal : prompts simples et directs sur un fichier.
+- Niveau 2 — Contexte : contraintes précises, dépendances entre fichiers.
+- Niveau 3 — Découpage : décomposer un objectif flou en sous-tâches promptables.
+- Niveau 4 — Lecture de code : comprendre du code legacy avant de le modifier.
+
+## État (v0.9, 2026-07-17)
+Phases 0 à 2 terminées, jalons J0/J1/J2 validés, 4 niveaux jouables, 31 tests réussis. Prochaine étape : phase 3 (playtest, équilibrage).
+
+## Concepts clés
+- Vibecoding : piloter un agent de codage IA par prompts naturels.
+- Vaisseau-Écosystème : métaphore narrative (arche générationnelle vivante) au-dessus d'un vrai chantier de code.
+- Hot-reload : boucle courte d'observation entre l'édition par l'agent et le re-run.
+- Dette technique : mécanique de jeu — un module bâclé craque sous la vague.
+
+## Liens
+- Dépôt : https://github.com/ServOMorph/jeux_vibecoder
+- Description de référence du concept : `docs/PROJET.md`
+- Plan de développement : `docs/PLAN_DEVELOPPEMENT.md`
+- Suivi d'avancement : `ROADMAP.md`, `roadmap_phase1.md`, `roadmap_phase2.md`, `roadmap_ui.md`
+- Journal de bord (énoncés des niveaux) : `vaisseau/JOURNAL_DE_BORD.md`
+- Versions : `CHANGELOG.md`
+- Licence : MIT (voir `LICENSE`)
